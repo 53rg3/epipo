@@ -7,3 +7,12 @@ quarkus:
   grpc:
     server:
       port: 29000
+
+camel:
+  rabbit-mq:
+    exchange: ping-exchange
+    hostname: localhost
+    port: 5672
+    username: guest
+    password: guest
+    queue: ping-queue

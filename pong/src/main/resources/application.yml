@@ -1,6 +1,7 @@
 app:
   name: Pong
 
+
 quarkus:
   http:
     port: 30080
@@ -11,3 +12,15 @@ quarkus:
       PingService:
         host: localhost
         port: 29000
+
+camel:
+  rabbit-mq:
+    exchange: ping-exchange
+    hostname: localhost
+    port: 5672
+    username: guest
+    password: guest
+    queue: ping-queue
+  grpc:
+    path: localhost:29000/io.auto.generated.PingService
+    method: handlePong

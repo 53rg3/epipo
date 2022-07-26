@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
-import static io.github.ss3rg3.ping.camel.PingToRabbitMqRoute.DIRECT_FOO;
+import static io.github.ss3rg3.ping.camel.PingToRabbitMqRoute.DIRECT_PING_PRODUCER;
 
 @Path("/send-pings")
 public class SendPingsEndpoint {
@@ -36,7 +36,7 @@ public class SendPingsEndpoint {
                 Ping ping = Ping.newBuilder()
                         .setCount(pingCount.incrementAndGet())
                         .build();
-                this.camelBean.to(DIRECT_FOO)
+                this.camelBean.to(DIRECT_PING_PRODUCER)
                         .withBody(ping)
                         .send();
             });
