@@ -1,0 +1,13 @@
+app:
+  name: Pong
+
+quarkus:
+  http:
+    port: 30080
+  grpc:
+    server:
+      port: 39000
+    clients:
+      PingService:
+        host: localhost
+        port: 29000
