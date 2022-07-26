@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.github.ss3rg3.ping";
+option java_outer_classname = "PingServiceGrpcProto";
+
+package proto;
+
+service PingServiceProto {
+  rpc handlePong (Pong) returns (Empty) {}
+}
+
+message Ping {
+  int32 count = 1;
+}
+
+message Pong {
+  int32 count = 1;
+}
+
+message Empty {}

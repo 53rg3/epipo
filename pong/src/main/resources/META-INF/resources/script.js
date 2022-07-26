@@ -41,25 +41,7 @@ function putConfig() {
         },
         dataType: 'text'
     })
-}
 
-function sendPings() {
-    $.ajax({
-        url: "/send-pings",
-        type: 'POST',
-        data: "",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        success: () => {
-            showToastSuccess("Success", "Pings sent");
-        },
-        error: (e) => {
-            console.log("Failed to update config", e)
-            showToastError("Error", "Failed to send pings")
-        },
-        dataType: 'text'
-    })
 }
 
 function showToastError(heading, text) {
@@ -82,5 +64,4 @@ function showToastSuccess(heading, text) {
 
 
 $("#save_config_button").click(putConfig)
-$("#send-pings").click(sendPings)
 getConfig()

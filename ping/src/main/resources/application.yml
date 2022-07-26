@@ -1,2 +1,9 @@
 app:
   name: Ping
+
+quarkus:
+  http:
+    port: 20080
+  grpc:
+    server:
+      port: 29000
