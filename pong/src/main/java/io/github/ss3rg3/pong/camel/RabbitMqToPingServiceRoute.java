@@ -1,10 +1,8 @@
 package io.github.ss3rg3.pong.camel;
 
-import io.github.ss3rg3.ping.Ping;
-import io.github.ss3rg3.ping.PingServiceProto;
-import io.github.ss3rg3.ping.Pong;
+import io.auto.generated.Ping;
+import io.auto.generated.Pong;
 import io.github.ss3rg3.pong.utils.PROTO;
-import io.quarkus.grpc.GrpcClient;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 
@@ -15,9 +13,6 @@ import static org.apache.camel.builder.endpoint.StaticEndpointBuilders.*;
 @Singleton
 public class RabbitMqToPingServiceRoute extends RouteBuilder {
 
-    @GrpcClient("pingServiceProto")
-    PingServiceProto pingServiceProto;
-
     @Override
     public void configure() {
         this.from(rabbitmq("ping-exchange")
@@ -26,7 +21,7 @@ public class RabbitMqToPingServiceRoute extends RouteBuilder {
                         .queue("ping-queue")
                         .autoDelete(false))
                 .process(this::createPong)
-                .to(grpc("localhost:29000/io.github.ss3rg3.ping.PingServiceProto")
+                .to(grpc("localhost:29000/io.auto.generated.PingService")
                         .method("handlePong"))
                 .to(log("PongService").plain(true));
     }

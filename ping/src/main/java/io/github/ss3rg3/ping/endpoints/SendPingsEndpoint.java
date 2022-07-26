@@ -1,6 +1,6 @@
 package io.github.ss3rg3.ping.endpoints;
 
-import io.github.ss3rg3.ping.Ping;
+import io.auto.generated.Ping;
 import io.github.ss3rg3.ping.camel.CamelBean;
 import io.github.ss3rg3.ping.models.PingConfig;
 import io.smallrye.mutiny.Uni;

@@ -1,6 +1,6 @@
 package io.github.ss3rg3.ping.camel;
 
-import io.github.ss3rg3.ping.Ping;
+import io.auto.generated.Ping;
 import org.apache.camel.builder.RouteBuilder;
 
 import javax.inject.Singleton;
