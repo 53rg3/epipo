@@ -1,8 +1,8 @@
-package io.github.ss3rg3.ping.endpoints;
+package io.github.ss3rg3.ping.http;
 
 import io.auto.generated.Ping;
 import io.github.ss3rg3.ping.camel.CamelBean;
-import io.github.ss3rg3.ping.models.PingConfig;
+import io.github.ss3rg3.ping.config.PingConfig;
 import io.smallrye.mutiny.Uni;
 
 import javax.inject.Inject;

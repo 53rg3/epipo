@@ -1,4 +1,4 @@
-package io.github.ss3rg3.ping.models;
+package io.github.ss3rg3.ping.config;
 
 import io.github.ss3rg3.ping.utils.FileUtils;
 import io.github.ss3rg3.ping.utils.JSON;
@@ -11,8 +11,8 @@ import static io.github.ss3rg3.ping.config.Constants.CONFIG_JSON_PATH;
 
 public class PingConfig {
 
-    @Min(value = 1, message = "'pingsToSend' must be between 1-1000")
-    @Max(value = 1000, message = "'pingsToSend' must be between 1-1000")
+    @Min(value = 1, message = "'pingsToSend' must be between 1-100000")
+    @Max(value = 100000, message = "'pingsToSend' must be between 1-100000")
     @NotNull(message = "'pingsToSend' cannot be null")
     public Integer pingsToSend;
 

@@ -1,6 +1,5 @@
-package io.github.ss3rg3.pong.models;
+package io.github.ss3rg3.pong.config;
 
-import io.github.ss3rg3.pong.config.Constants;
 import io.github.ss3rg3.pong.utils.FileUtils;
 import io.github.ss3rg3.pong.utils.JSON;
 

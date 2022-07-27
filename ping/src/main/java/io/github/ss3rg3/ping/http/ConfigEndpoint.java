@@ -1,7 +1,7 @@
-package io.github.ss3rg3.ping.endpoints;
+package io.github.ss3rg3.ping.http;
 
 import io.github.ss3rg3.ping.config.Constants;
-import io.github.ss3rg3.ping.models.PingConfig;
+import io.github.ss3rg3.ping.config.PingConfig;
 import io.github.ss3rg3.ping.utils.FileUtils;
 import io.github.ss3rg3.ping.utils.UniResponse;
 import io.github.ss3rg3.ping.utils.JSON;

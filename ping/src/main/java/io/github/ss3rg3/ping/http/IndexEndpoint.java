@@ -1,6 +1,6 @@
-package io.github.ss3rg3.ping.endpoints;
+package io.github.ss3rg3.ping.http;
 
-import io.github.ss3rg3.ping.models.AppConfig;
+import io.github.ss3rg3.ping.config.AppConfig;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 

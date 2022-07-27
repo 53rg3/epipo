@@ -1,7 +1,7 @@
 package io.github.ss3rg3.ping.camel;
 
 import io.auto.generated.Ping;
-import io.github.ss3rg3.ping.models.CamelConfig;
+import io.github.ss3rg3.ping.config.CamelConfig;
 import org.apache.camel.builder.RouteBuilder;
 
 import javax.inject.Inject;

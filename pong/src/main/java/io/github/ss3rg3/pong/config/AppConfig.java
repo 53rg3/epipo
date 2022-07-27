@@ -1,4 +1,4 @@
-package io.github.ss3rg3.ping.models;
+package io.github.ss3rg3.pong.config;
 
 import io.smallrye.config.ConfigMapping;
 

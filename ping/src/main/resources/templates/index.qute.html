@@ -9,11 +9,15 @@
 <body>
 <h1>{name} Service</h1>
 <div class="container">
-
     <div class="box">
         <label for="config">Send pings:
             <button id="send-pings">Go</button>
         </label>
+    </div>
+</div>
+<div class="container">
+    <div class="box">
+        Received pongs: <span id="pong-count"></span>
     </div>
 </div>
 <div class="container">
@@ -28,5 +32,26 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="toast.js"></script>
 <script src="script.js"></script>
+<script type="text/javascript">
+    var connected = false;
+    var socket;
+    var pongCount = 0;
+
+    var connect = function () {
+        if (!connected) {
+            socket = new WebSocket("ws://" + location.host + "/progress");
+            socket.onopen = function () {
+                connected = true;
+                console.log("Connected to the web socket");
+            };
+            socket.onmessage = function (m) {
+                pongCount++;
+                $("#pong-count").text(pongCount);
+            };
+        }
+    };
+    connect();
+    $("#pong-count").text(pongCount);
+</script>
 </body>
 </html>

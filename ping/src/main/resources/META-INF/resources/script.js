@@ -80,7 +80,8 @@ function showToastSuccess(heading, text) {
     })
 }
 
-
-$("#save_config_button").click(putConfig)
-$("#send-pings").click(sendPings)
-getConfig()
+$( document ).ready(function() {
+    $("#save_config_button").click(putConfig)
+    $("#send-pings").click(sendPings)
+    getConfig()
+})
