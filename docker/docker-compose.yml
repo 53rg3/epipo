@@ -4,5 +4,5 @@ services:
     container_name: ping-queue
     hostname: ping-queue
     ports:
-      - 10000:15672
+      - 15672:15672
       - 5672:5672

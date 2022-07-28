@@ -44,7 +44,12 @@ public class CamelBean {
     }
 
     void onStop(@Observes ShutdownEvent ev) {
-        this.context.stop();
+        try {
+            this.context.stop();
+            this.context.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void addRoutesToContext(CamelRoutes camelRoutes) {

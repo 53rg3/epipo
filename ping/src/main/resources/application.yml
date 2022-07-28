@@ -7,6 +7,11 @@ quarkus:
   grpc:
     server:
       port: 29000
+  rest-client:
+    PongServiceApiProxy:
+      url: http://localhost:30080/
+    RabbitMqApiProxy:
+      url: http://localhost:15672/
 
 camel:
   rabbit-mq:
@@ -16,3 +21,6 @@ camel:
     username: guest
     password: guest
     queue: ping-queue
+
+health:
+  ping-service-health-url: http://localhost:20080/q/health

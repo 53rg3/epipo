@@ -1,4 +1,4 @@
-package io.github.ss3rg3.ping.http;
+package io.github.ss3rg3.ping.endpoints;
 
 import io.auto.generated.Ping;
 import io.github.ss3rg3.ping.camel.CamelBean;

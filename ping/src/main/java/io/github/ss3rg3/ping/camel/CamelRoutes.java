@@ -12,9 +12,13 @@ public class CamelRoutes {
     @Inject
     PingToRabbitMqRoute pingToRabbitMqRoute;
 
+    @Inject
+    TimerRoutes timerRoutes;
+
     public List<RouteBuilder> asList() {
         return List.of(
-                this.pingToRabbitMqRoute
+                this.pingToRabbitMqRoute,
+                this.timerRoutes
         );
     }
 

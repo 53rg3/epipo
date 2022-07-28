@@ -6,30 +6,29 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
-import java.io.IOException;
 
-@ServerEndpoint("/progress")
+@ServerEndpoint("/status")
 @ApplicationScoped
-public class ProgressSocket {
+public class StatusSocket {
 
-    private static final Logger LOG = Logger.getLogger(ProgressSocket.class);
+    private static final Logger LOG = Logger.getLogger(StatusSocket.class);
 
     @Inject
-    ProgressSession progressSession;
+    StatusSession statusSession;
 
     @OnOpen
     public void onOpen(Session session) {
-        this.progressSession.set(session);
+        this.statusSession.set(session);
     }
 
     @OnClose
     public void onClose(Session session) {
-        this.progressSession.close();
+        this.statusSession.close();
     }
 
     @OnError
     public void onError(Session session, Throwable throwable) {
-        this.progressSession.close();
+        this.statusSession.close();
     }
 
     @OnMessage

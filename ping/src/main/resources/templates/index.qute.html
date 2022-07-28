@@ -12,12 +12,16 @@
     <div class="box">
         <label for="config">Send pings:
             <button id="send-pings">Go</button>
-        </label>
+        </label><br><br>
+        Received pongs: <span id="pong-count">0</span>
     </div>
 </div>
 <div class="container">
     <div class="box">
-        Received pongs: <span id="pong-count"></span>
+        Health:
+        <ul id="status-list">
+            <li>Loading...</li>
+        </ul>
     </div>
 </div>
 <div class="container">
@@ -33,25 +37,30 @@
 <script src="toast.js"></script>
 <script src="script.js"></script>
 <script type="text/javascript">
-    var connected = false;
-    var socket;
-    var pongCount = 0;
+    let connected = false;
+    let socket;
 
-    var connect = function () {
+    let connect = function () {
         if (!connected) {
-            socket = new WebSocket("ws://" + location.host + "/progress");
+            socket = new WebSocket("ws://" + location.host + "/status");
             socket.onopen = function () {
                 connected = true;
                 console.log("Connected to the web socket");
             };
             socket.onmessage = function (m) {
-                pongCount++;
-                $("#pong-count").text(pongCount);
+                let response = JSON.parse(m.data)
+                $("#pong-count").text(response.pongCount);
+
+                let checksHtml = "<li>Ping Service: " + response.health.status + "</li>";
+                response.health.checks.forEach((check) => {
+                    checksHtml += "<li>"+ check.name + ": " + check.status + "</li>";
+                })
+                $("#status-list").html(checksHtml);
             };
         }
     };
     connect();
-    $("#pong-count").text(pongCount);
+    $("#pong-count").text("0");
 </script>
 </body>
 </html>
