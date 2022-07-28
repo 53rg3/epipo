@@ -15,7 +15,7 @@ function getConfig() {
     $.ajax({
         url: "/config",
         type: "GET",
-        success: function(data) {
+        success: function (data) {
             $("#config_field").val(JSON.stringify(data, null, 2))
         },
         dataType: "json",
@@ -54,9 +54,9 @@ function sendPings() {
         success: () => {
             showToastSuccess("Success", "Pings sent");
         },
-        error: (e) => {
-            console.log("Failed to update config", e)
-            showToastError("Error", "Failed to send pings")
+        error: (jqXHR) => {
+            console.log("Failed to update config", jqXHR.responseText)
+            showToastError("Error", jqXHR.responseText)
         },
         dataType: 'text'
     })
@@ -80,7 +80,7 @@ function showToastSuccess(heading, text) {
     })
 }
 
-$( document ).ready(function() {
+$(document).ready(function () {
     $("#save_config_button").click(putConfig)
     $("#send-pings").click(sendPings)
     getConfig()

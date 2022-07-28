@@ -1,6 +1,8 @@
 package io.github.ss3rg3.ping.health;
 
 import io.github.ss3rg3.ping.config.HealthConfig;
+import io.github.ss3rg3.ping.fsm.ServiceFSM.ServiceEvent;
+import io.github.ss3rg3.ping.fsm.ServiceFsmWrapper;
 import io.github.ss3rg3.ping.models.Status.Health;
 import io.github.ss3rg3.ping.utils.JSON;
 import io.quarkus.scheduler.Scheduled;
@@ -25,6 +27,8 @@ public class HealthCollector {
     @Inject
     HealthConfig healthConfig;
 
+    @Inject
+    ServiceFsmWrapper serviceFsm;
 
     public Health getCurrent() {
         return this.current;
@@ -37,6 +41,19 @@ public class HealthCollector {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+        this.updateServiceFSM();
+    }
+
+    private void updateServiceFSM() {
+        switch (this.current.status) {
+            case "UP":
+                this.serviceFsm.get().fire(ServiceEvent.ALL_SERVICES_UP);
+                break;
+            case "DOWN":
+            default:
+                this.serviceFsm.get().fire(ServiceEvent.SERVICE_WENT_DOWN);
+                break;
         }
     }
 

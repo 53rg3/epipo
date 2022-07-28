@@ -36,31 +36,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="toast.js"></script>
 <script src="script.js"></script>
-<script type="text/javascript">
-    let connected = false;
-    let socket;
-
-    let connect = function () {
-        if (!connected) {
-            socket = new WebSocket("ws://" + location.host + "/status");
-            socket.onopen = function () {
-                connected = true;
-                console.log("Connected to the web socket");
-            };
-            socket.onmessage = function (m) {
-                let response = JSON.parse(m.data)
-                $("#pong-count").text(response.pongCount);
-
-                let checksHtml = "<li>Ping Service: " + response.health.status + "</li>";
-                response.health.checks.forEach((check) => {
-                    checksHtml += "<li>"+ check.name + ": " + check.status + "</li>";
-                })
-                $("#status-list").html(checksHtml);
-            };
-        }
-    };
-    connect();
-    $("#pong-count").text("0");
-</script>
+<script src="status-socket.js"></script>
+<script src="fsm-socket.js"></script>
 </body>
 </html>

@@ -3,6 +3,9 @@ package io.github.ss3rg3.ping.endpoints;
 import io.auto.generated.Ping;
 import io.github.ss3rg3.ping.camel.CamelBean;
 import io.github.ss3rg3.ping.config.PingConfig;
+import io.github.ss3rg3.ping.fsm.ServiceFSM.ServiceState;
+import io.github.ss3rg3.ping.fsm.ServiceFsmWrapper;
+import io.github.ss3rg3.ping.utils.UniResponse;
 import io.smallrye.mutiny.Uni;
 
 import javax.inject.Inject;
@@ -25,10 +28,17 @@ public class SendPingsEndpoint {
     @Inject
     CamelBean camelBean;
 
+    @Inject
+    ServiceFsmWrapper serviceFsm;
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> sendPings() {
+        if (!this.serviceFsm.get().getCurrentState().equals(ServiceState.AVAILABLE)) {
+            return UniResponse.as(500, "Can't send pings because Ping Service is '" + this.serviceFsm.get().getCurrentState() + "'");
+        }
+
         return Uni.createFrom().item(() -> {
             PingConfig pingConfig = PingConfig.load();
 

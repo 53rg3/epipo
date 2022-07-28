@@ -1,3 +1,5 @@
+// FROM https://kamranahmed.info/toast
+
 "function" != typeof Object.create && (Object.create = function (t) {
     function o() {
     }
