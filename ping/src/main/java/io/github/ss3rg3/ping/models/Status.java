@@ -6,11 +6,15 @@ import java.util.Map;
 
 public class Status {
 
-    public int pongCount;
+    public double pingsSent;
+    public double pongsReceived;
+    public double pongsPerSecond;
     public Health health;
 
-    public Status(int pongCount, Health health) {
-        this.pongCount = pongCount;
+    public Status(double pingsSent, double pongsReceived, double pongsPerSecond, Health health) {
+        this.pingsSent = pingsSent;
+        this.pongsReceived = pongsReceived;
+        this.pongsPerSecond = pongsPerSecond;
         this.health = health;
     }
 

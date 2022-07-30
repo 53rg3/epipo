@@ -5,6 +5,7 @@ import io.github.ss3rg3.ping.camel.CamelBean;
 import io.github.ss3rg3.ping.config.PingConfig;
 import io.github.ss3rg3.ping.fsm.ServiceFSM.ServiceState;
 import io.github.ss3rg3.ping.fsm.ServiceFsmWrapper;
+import io.github.ss3rg3.ping.metrics.Meters;
 import io.github.ss3rg3.ping.utils.UniResponse;
 import io.smallrye.mutiny.Uni;
 
@@ -31,6 +32,9 @@ public class SendPingsEndpoint {
     @Inject
     ServiceFsmWrapper serviceFsm;
 
+    @Inject
+    Meters meters;
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -49,6 +53,7 @@ public class SendPingsEndpoint {
                 this.camelBean.to(DIRECT_PING_PRODUCER)
                         .withBody(ping)
                         .send();
+                this.meters.getPingsSent().increment();
             });
 
             return Response.ok("sending pings").build();

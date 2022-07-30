@@ -10,7 +10,9 @@ let statusConnect = function () {
         };
         statusSocket.onmessage = function (m) {
             let response = JSON.parse(m.data)
-            $("#pong-count").text(response.pongCount);
+            $("#ping-count").text(response.pingsSent);
+            $("#pong-count").text(response.pongsReceived);
+            $("#pongs-per-second").text(response.pongsPerSecond);
 
             let checksHtml = "<li>Ping Service: " + response.health.status + "</li>";
             response.health.checks.forEach((check) => {
