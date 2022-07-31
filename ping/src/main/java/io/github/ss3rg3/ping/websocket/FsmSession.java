@@ -1,11 +1,9 @@
 package io.github.ss3rg3.ping.websocket;
 
 import io.github.ss3rg3.ping.fsm.ServiceFSM.ServiceState;
-import io.github.ss3rg3.ping.health.HealthCollector;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.websocket.Session;
 import java.io.IOException;
 
@@ -15,9 +13,6 @@ public class FsmSession {
     private static final Logger LOG = Logger.getLogger(FsmSession.class);
 
     private Session session;
-
-    @Inject
-    HealthCollector healthCollector;
 
     public Session get() {
         return this.session;

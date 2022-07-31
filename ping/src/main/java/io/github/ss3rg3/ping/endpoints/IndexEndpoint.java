@@ -1,8 +1,10 @@
 package io.github.ss3rg3.ping.endpoints;
 
 import io.github.ss3rg3.ping.config.AppConfig;
+import io.github.ss3rg3.ping.utils.UniResponse;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
+import io.smallrye.mutiny.Uni;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -26,8 +28,8 @@ public class IndexEndpoint {
 
     @GET
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance get() {
-        return index.data("name", appConfig.name());
+    public Uni<TemplateInstance> get() {
+        return Uni.createFrom().item(index.data("name", appConfig.name()));
     }
 
 }

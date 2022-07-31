@@ -26,5 +26,4 @@ public class PingServiceImpl implements PingService {
         return Uni.createFrom().nullItem();
     }
 
-
 }

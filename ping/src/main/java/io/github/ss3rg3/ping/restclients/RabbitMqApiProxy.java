@@ -7,7 +7,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@RegisterRestClient // todo put in app.props
+@RegisterRestClient
 public interface RabbitMqApiProxy {
 
     @GET
